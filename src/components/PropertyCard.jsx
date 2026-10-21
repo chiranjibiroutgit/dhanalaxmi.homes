@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, MapPin, Heart, ShieldCheck, Check } from "lucide-react";
+import { ArrowRight, MapPin, Heart, Check } from "lucide-react";
 import { useCart } from "../context/CartContext";
+import NegotiationNote from "./NegotiationNote";
 
 /** Remember the exact scroll position so "Back to Listings" lands in place */
 export const rememberScroll = () => {
@@ -115,6 +116,12 @@ export default function PropertyCard({ property }) {
         </p>
         <p className="mt-0.5 text-[10px] uppercase tracking-wider text-gray-400">{property.microLocation}</p>
 
+        {Array.isArray(property.goals) && property.goals.length > 0 && (
+          <p className="mt-1.5 text-[10px] font-semibold text-gold">
+            Best for: {property.goals.slice(0, 2).join(" · ")}
+          </p>
+        )}
+
         {/* Spec chips */}
         <div className="mt-4 flex flex-wrap gap-1.5">
           <span className="spec-chip">{property.bhk}</span>
@@ -123,17 +130,18 @@ export default function PropertyCard({ property }) {
         </div>
 
         {/* Price + CTA */}
-        <div className="mt-auto flex items-end justify-between gap-3 pt-5">
+        <div className="mt-auto flex flex-col gap-3 pt-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <div className="font-serif text-[26px] font-bold leading-none text-navy">{property.price}</div>
             <div className="mt-1 text-[9px] font-semibold uppercase tracking-[0.14em] text-gray-400">
               {property.priceLabel}
             </div>
+            <NegotiationNote className="mt-1.5 text-[9px]" iconSize={11} />
           </div>
           <Link
             to={`/property/${property.id}`}
             onClick={rememberScroll}
-            className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-navy px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-white transition-all hover:bg-gold hover:text-navy"
+            className="inline-flex shrink-0 items-center gap-1.5 self-start rounded-full bg-navy px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-white transition-all hover:bg-gold hover:text-navy sm:self-auto"
           >
             View Details <ArrowRight size={13} strokeWidth={2.6} />
           </Link>

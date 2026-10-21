@@ -5,6 +5,8 @@ import { useNav } from "../context/NavContext";
 import { useCart } from "../context/CartContext";
 import { useSiteContent } from "../context/SiteContentContext";
 import { useAuth } from "../context/AuthContext";
+import { useWhatsAppLead } from "../context/WhatsAppLeadContext";
+import { WhatsAppMark } from "./WhatsAppLeadModal";
 
 /* Zone A — landing page scrollspy links */
 const SECTION_LINKS = [
@@ -24,6 +26,7 @@ export default function Header({ forceHomeNav = false }) {
   const { count } = useCart();
   const { content } = useSiteContent();
   const { user, logout, isAuthenticated, loading } = useAuth();
+  const { openWhatsAppLead } = useWhatsAppLead();
   const location = useLocation();
   const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
@@ -231,12 +234,23 @@ export default function Header({ forceHomeNav = false }) {
               )}
             </Link>
           ))}
-          <a
-            href={`tel:${content.contact.phone.replace(/\s+/g, "")}`}
-            className="mt-2 flex items-center justify-center gap-2 rounded-xl bg-navy px-4 py-3 text-sm font-semibold text-white"
-          >
-            <Phone size={16} /> Talk to Sales
-          </a>
+          <div className="mt-2 grid grid-cols-2 gap-2">
+            <a
+              href={`tel:${content.contact.phone.replace(/\s+/g, "")}`}
+              className="flex items-center justify-center gap-2 rounded-xl bg-navy px-3 py-3 text-[12px] font-semibold text-white"
+            >
+              <Phone size={15} /> Call Sales
+            </a>
+            <button
+              type="button"
+              onClick={() =>
+                openWhatsAppLead({ mode: "inquiry", source: "Mobile menu" })
+              }
+              className="flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-3 py-3 text-[12px] font-semibold text-white"
+            >
+              <WhatsAppMark size={15} /> WhatsApp
+            </button>
+          </div>
         </div>
       </div>
     </header>

@@ -1,8 +1,11 @@
 import { ArrowRight, MapPin, User, Phone, Mail, Calendar, ShieldCheck } from "lucide-react";
 import { useSiteContent } from "../context/SiteContentContext";
+import { useWhatsAppLead } from "../context/WhatsAppLeadContext";
+import { WhatsAppMark } from "./WhatsAppLeadModal";
 
 export default function AboutUs() {
   const { content } = useSiteContent();
+  const { openWhatsAppLead } = useWhatsAppLead();
   const about = content.about;
   const metrics = about.metrics?.length ? about.metrics : [];
 
@@ -110,8 +113,23 @@ export default function AboutUs() {
           <h3 className="serif text-3xl md:text-4xl font-bold mb-4">Ready to find your dream property?</h3>
           <p className="text-gray-300 mb-6 max-w-xl mx-auto text-sm">Explore our curated portfolio of luxury residential and commercial assets across Puri and beyond.</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <button className="px-8 py-3 bg-gold text-navy font-bold text-sm rounded-full hover:bg-white transition-colors">Browse Properties</button>
-            <button className="px-8 py-3 border border-white text-white font-bold text-sm rounded-full hover:bg-white/10 transition-colors">Book a Site Visit</button>
+            <button
+              onClick={() =>
+                document.getElementById("properties")?.scrollIntoView({ behavior: "smooth", block: "start" })
+              }
+              className="px-8 py-3 bg-gold text-navy font-bold text-sm rounded-full hover:bg-white transition-colors"
+            >
+              Browse Properties
+            </button>
+            <button
+              type="button"
+              onClick={() =>
+                openWhatsAppLead({ mode: "inquiry", source: "About section CTA" })
+              }
+              className="inline-flex items-center justify-center gap-2 px-8 py-3 border border-white text-white font-bold text-sm rounded-full hover:bg-white/10 transition-colors"
+            >
+              <WhatsAppMark size={15} /> Chat on WhatsApp
+            </button>
           </div>
         </div>
       </div>

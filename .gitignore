@@ -1,6 +1,7 @@
 # Dhanalaxmi Group — Production Build
 /dist
 /node_modules
+/.vite
 .env
 .env.local
 .env.*.local

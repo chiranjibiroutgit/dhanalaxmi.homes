@@ -12,8 +12,8 @@ import { PROPERTIES, CONTACT } from "../data/properties";
  * backed by Firestore + a reviewed GitHub commit.
  */
 
-// v2 — refreshes the product catalog with verified local hero images
-const STORAGE_KEY = "dl_site_content_v3";
+// v4 — refreshes contact number, negotiation notes and client-friendly filter metadata
+const STORAGE_KEY = "dl_site_content_v4";
 
 const clone = (value) => JSON.parse(JSON.stringify(value));
 
@@ -31,7 +31,7 @@ export const defaultContent = {
     subhead:
       "Discover sea-facing residences, marina villas and high-yield commercial assets across Puri's most coveted addresses — engineered for generational value, delivered with complete transparency.",
     primaryCta: "Explore Listings",
-    secondaryCta: "Book a Site Visit",
+    secondaryCta: "Chat on WhatsApp",
     backgroundImage:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80",
     stats: [
@@ -82,6 +82,26 @@ function loadContent() {
     const stored = JSON.parse(raw);
     const base = clone(defaultContent);
 
+    /* Keep older saved listings working after new filter fields are added */
+    const mergeProperties = (savedProperties) => {
+      if (!Array.isArray(savedProperties)) return base.properties;
+      return savedProperties.map((property) => {
+        const fallback = base.properties.find((item) => item.id === property.id);
+        return {
+          ...fallback,
+          ...property,
+          goals:
+            Array.isArray(property.goals) && property.goals.length
+              ? property.goals
+              : fallback?.goals || [],
+          tags:
+            Array.isArray(property.tags) && property.tags.length
+              ? property.tags
+              : fallback?.tags || [],
+        };
+      });
+    };
+
     return {
       ...base,
       ...stored,
@@ -90,7 +110,7 @@ function loadContent() {
       portfolio: { ...base.portfolio, ...(stored.portfolio || {}) },
       about: { ...base.about, ...(stored.about || {}) },
       contact: { ...base.contact, ...(stored.contact || {}) },
-      properties: Array.isArray(stored.properties) ? stored.properties : base.properties,
+      properties: mergeProperties(stored.properties),
     };
   } catch {
     return clone(defaultContent);

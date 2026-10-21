@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, Calendar, MapPin, ArrowRight, FileText, ShoppingCart, User } from "lucide-react";
 import { CONTACT } from "../data/properties";
+import { useWhatsAppLead } from "../context/WhatsAppLeadContext";
+import { WhatsAppMark } from "./WhatsAppLeadModal";
 
 export default function Me() {
+  const { openWhatsAppLead } = useWhatsAppLead();
   const profile = {
     name: "Valued Client",
     email: CONTACT.email,
@@ -132,14 +135,15 @@ export default function Me() {
               </div>
               <div className="mt-8 pt-6 border-t border-white/10">
                 <div className="text-xs uppercase tracking-wider text-gray-400 font-bold mb-3">WhatsApp Quick Chat</div>
-                <a
-                  href={`https://wa.me/919876543210?text=Hi%20Dhanalaxmi%20Group,%20I%20need%20support%20with%20my%20account`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={() =>
+                    openWhatsAppLead({ mode: "inquiry", source: "My Account support" })
+                  }
                   className="w-full py-3 bg-gold text-navy font-bold text-sm rounded-xl flex items-center justify-center gap-2 hover:bg-white transition-colors"
                 >
-                  <Phone size={16} strokeWidth={2} /> Chat on WhatsApp
-                </a>
+                  <WhatsAppMark size={16} /> Chat on WhatsApp
+                </button>
               </div>
             </div>
 

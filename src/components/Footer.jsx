@@ -1,7 +1,10 @@
 import { useSiteContent } from "../context/SiteContentContext";
+import { useWhatsAppLead } from "../context/WhatsAppLeadContext";
+import { WhatsAppMark } from "./WhatsAppLeadModal";
 
 export default function Footer() {
   const { content } = useSiteContent();
+  const { openWhatsAppLead } = useWhatsAppLead();
   const { brand, contact } = content;
 
   return (
@@ -52,6 +55,17 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <span className="mt-0.5 text-gold">📍</span>
                 <span data-edit-key="contact.address">{contact.address}</span>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() =>
+                    openWhatsAppLead({ mode: "inquiry", source: "Footer" })
+                  }
+                  className="inline-flex items-center gap-2 font-semibold text-gold transition-colors hover:text-white"
+                >
+                  <WhatsAppMark size={13} /> Chat on WhatsApp
+                </button>
               </li>
             </ul>
           </div>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Trash2, Phone, ArrowRight, ShieldCheck, MapPin, Heart, Check } from "lucide-react";
 import { useCart } from "../context/CartContext";
+import NegotiationNote from "./NegotiationNote";
 
 /**
  * My Cart / Inquiries — saved properties table with per-item removal
@@ -154,6 +155,7 @@ export default function MyCart() {
                         </span>
                         <span className="text-[10px] font-medium uppercase tracking-wider text-gray-400">{p.possession}</span>
                       </div>
+                      <NegotiationNote className="mt-1.5 text-[9px]" iconSize={10} />
                     </div>
                   </li>
                 ))}

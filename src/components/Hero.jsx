@@ -1,6 +1,8 @@
 import { ShieldCheck, Star, ArrowDown } from "lucide-react";
 import SearchBar from "./SearchBar";
 import { useSiteContent } from "../context/SiteContentContext";
+import { useWhatsAppLead } from "../context/WhatsAppLeadContext";
+import { WhatsAppMark } from "./WhatsAppLeadModal";
 
 const STATS = [
   { value: "10+", label: "Years of Legacy" },
@@ -15,6 +17,7 @@ const STATS = [
  */
 export default function Hero({ filters, onChange, onSearch, resultCount }) {
   const { content } = useSiteContent();
+  const { openWhatsAppLead } = useWhatsAppLead();
   const hero = content.hero;
   const stats = hero.stats?.length ? hero.stats : STATS;
 
@@ -71,15 +74,16 @@ export default function Hero({ filters, onChange, onSearch, resultCount }) {
             <a href="#properties" data-edit-key="hero.primaryCta" className="btn-gold">
               {hero.primaryCta}
             </a>
-            <a
-              href={`https://wa.me/${content.contact.whatsapp.replace(/\D/g, "")}?text=Hi%20Dhanalaxmi%20Group,%20I%20would%20like%20to%20book%20a%20site%20visit`}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              type="button"
+              onClick={() =>
+                openWhatsAppLead({ mode: "inquiry", source: "Hero WhatsApp" })
+              }
               data-edit-key="hero.secondaryCta"
-              className="inline-flex items-center justify-center rounded-full border border-white/40 px-6 py-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-white hover:text-navy"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3 text-[12px] font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-white hover:text-navy"
             >
-              {hero.secondaryCta}
-            </a>
+              <WhatsAppMark size={15} /> {hero.secondaryCta}
+            </button>
           </div>
         </div>
 

@@ -4,8 +4,10 @@ import { CartProvider } from "./context/CartContext";
 import { NavProvider } from "./context/NavContext";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { SiteContentProvider } from "./context/SiteContentContext";
+import { WhatsAppLeadProvider } from "./context/WhatsAppLeadContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import WhatsAppFab from "./components/WhatsAppFab";
 import Home from "./components/Home";
 import PropertyDetail from "./components/PropertyDetail";
 import MyCart from "./components/MyCart";
@@ -35,6 +37,7 @@ function PublicLayout() {
         <Outlet />
       </main>
       <Footer />
+      <WhatsAppFab />
     </div>
   );
 }
@@ -123,13 +126,15 @@ export default function App() {
   return (
     <BrowserRouter>
       <SiteContentProvider>
-        <CartProvider>
-          <NavProvider>
-            <AuthProvider>
-              <AppRoutes />
-            </AuthProvider>
-          </NavProvider>
-        </CartProvider>
+        <WhatsAppLeadProvider>
+          <CartProvider>
+            <NavProvider>
+              <AuthProvider>
+                <AppRoutes />
+              </AuthProvider>
+            </NavProvider>
+          </CartProvider>
+        </WhatsAppLeadProvider>
       </SiteContentProvider>
     </BrowserRouter>
   );

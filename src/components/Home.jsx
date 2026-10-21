@@ -5,33 +5,59 @@ import PropertyGrid from "./PropertyGrid";
 import AboutUs from "./AboutUs";
 import { useSiteContent } from "../context/SiteContentContext";
 
-/** Budget buckets in INR (property.priceNumeric) */
-const BUDGETS = {
+/**
+ * Price bands are framed as ownership tiers rather than "cheap vs expensive".
+ * The numbers stay in the data; the labels keep the conversation positive.
+ */
+export const TIERS = {
   Any: [0, Infinity],
-  "Under 50 Lakhs": [0, 5000000],
-  "50 Lakhs - 1 Cr": [5000000, 10000000],
-  "1 Cr - 3 Cr": [10000000, 30000000],
-  "Above 3 Cr": [30000000, Infinity],
+  value: [0, 1800],
+  prime: [1800, 2500],
+  signature: [2500, Infinity],
+};
+
+export const DEFAULT_FILTERS = {
+  query: "",
+  goal: "All",
+  type: "All",
+  tier: "Any",
+  tag: "All",
 };
 
 export default function Home() {
   const location = useLocation();
   const { content } = useSiteContent();
   const properties = content.properties;
-  const [filters, setFilters] = useState({ location: "", type: "All", budget: "Any" });
+  const [filters, setFilters] = useState(DEFAULT_FILTERS);
 
-  /* Filter the dataset live as the buyer types */
+  /* Filter the dataset live as the buyer types or taps a preference */
   const results = useMemo(() => {
-    const q = filters.location.trim().toLowerCase();
-    const [min, max] = BUDGETS[filters.budget] ?? BUDGETS.Any;
+    const q = filters.query.trim().toLowerCase();
+    const [min, max] = TIERS[filters.tier] ?? TIERS.Any;
 
     return properties.filter((p) => {
-      const matchesLocation =
-        !q ||
-        `${p.title} ${p.location} ${p.microLocation} ${p.type}`.toLowerCase().includes(q);
+      const searchable = [
+        p.title,
+        p.subtitle,
+        p.location,
+        p.microLocation,
+        p.type,
+        p.badge,
+        ...(p.tags || []),
+        ...(p.goals || []),
+        ...(p.highlights || []),
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      const matchesQuery = !q || searchable.includes(q);
+      const matchesGoal = filters.goal === "All" || (p.goals || []).includes(filters.goal);
       const matchesType = filters.type === "All" || p.type === filters.type;
-      const matchesBudget = Number(p.priceNumeric || 0) >= min && Number(p.priceNumeric || 0) <= max;
-      return matchesLocation && matchesType && matchesBudget;
+      const matchesTag = filters.tag === "All" || (p.tags || []).includes(filters.tag);
+      const value = Number(p.priceNumeric || 0);
+      const matchesTier = value >= min && value <= max;
+
+      return matchesQuery && matchesGoal && matchesType && matchesTag && matchesTier;
     });
   }, [filters, properties]);
 
@@ -40,7 +66,6 @@ export default function Home() {
     if (location.state?.scrollTo) {
       const el = document.getElementById(location.state.scrollTo);
       if (el) {
-        // Wait one frame so the grid has painted before measuring
         requestAnimationFrame(() => el.scrollIntoView({ behavior: "auto", block: "start" }));
       }
       return;
@@ -68,7 +93,7 @@ export default function Home() {
         properties={results}
         total={properties.length}
         filters={filters}
-        onReset={() => setFilters({ location: "", type: "All", budget: "Any" })}
+        onReset={() => setFilters(DEFAULT_FILTERS)}
       />
       <AboutUs />
     </>

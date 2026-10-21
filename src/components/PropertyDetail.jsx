@@ -24,6 +24,9 @@ import {
 } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import { useSiteContent } from "../context/SiteContentContext";
+import { useWhatsAppLead } from "../context/WhatsAppLeadContext";
+import NegotiationNote from "./NegotiationNote";
+import { WhatsAppMark } from "./WhatsAppLeadModal";
 
 /* Icon registry keeps the data schema free of component imports */
 const ICONS = { Waves, ShieldCheck, Building2, Zap, Leaf, Anchor, Settings, Droplets, MapPin };
@@ -33,13 +36,13 @@ export default function PropertyDetail() {
   const navigate = useNavigate();
   const { items, addItem, removeItem } = useCart();
   const { content } = useSiteContent();
+  const { openWhatsAppLead } = useWhatsAppLead();
   const CONTACT = content.contact;
   const property = content.properties.find((p) => p.id === id);
   const saved = items.some((i) => i.id === id);
 
   const [active, setActive] = useState(0);
   const [planOpen, setPlanOpen] = useState(false);
-  const [bookOpen, setBookOpen] = useState(false);
   const [toast, setToast] = useState(false);
   const [zoomOpen, setZoomOpen] = useState(false);
   const [zoom, setZoom] = useState(1);
@@ -107,9 +110,11 @@ export default function PropertyDetail() {
     touchStart.current = null;
   };
 
-  const whatsapp = `https://wa.me/${CONTACT.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(
-    `Hi Dhanalaxmi Group, I'm interested in ${property.title} (${property.location}). Please share pricing and availability.`
-  )}`;
+  const openInquiry = (source) =>
+    openWhatsAppLead({ mode: "inquiry", product: property, source });
+
+  const openVisit = (source) =>
+    openWhatsAppLead({ mode: "visit", product: property, source });
 
   return (
     <div className="bg-white pb-24 lg:pb-0">
@@ -126,23 +131,23 @@ export default function PropertyDetail() {
           <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-gray-500">Starting at</p>
           <p className="mt-1 font-serif text-3xl font-bold leading-none text-navy">{property.price}</p>
           <p className="mt-1 text-[10px] text-gray-500">{property.priceLabel} · indicative pricing</p>
+          <NegotiationNote className="mt-2 text-[9px]" iconSize={11} />
         </div>
 
         <button
-          onClick={() => setBookOpen(true)}
+          onClick={() => openVisit("Product detail sidebar")}
           className="flex w-full items-center justify-center gap-2 rounded-xl bg-navy py-3.5 text-[11px] font-bold uppercase tracking-[0.14em] text-white shadow-lg shadow-navy/20 transition-all hover:bg-gold hover:text-navy"
         >
           <Calendar size={16} strokeWidth={2.2} /> Book a Site Visit
         </button>
 
-        <a
-          href={whatsapp}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
+          onClick={() => openInquiry("Product detail sidebar")}
           className="mt-2.5 flex w-full items-center justify-center gap-2 rounded-xl border-2 border-gold py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-gold transition-all hover:bg-gold hover:text-navy"
         >
-          <Phone size={16} strokeWidth={2.2} /> WhatsApp Inquiry
-        </a>
+          <WhatsAppMark size={16} /> WhatsApp Inquiry
+        </button>
         <a
           href={`tel:${CONTACT.phone.replace(/\s/g, "")}`}
           className="mt-2.5 flex w-full items-center justify-center gap-2 rounded-xl border border-gray-200 py-3 text-[11px] font-bold uppercase tracking-[0.14em] text-charcoal transition-colors hover:border-navy hover:text-navy"
@@ -313,6 +318,9 @@ export default function PropertyDetail() {
                   <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-gray-500">{c.label}</p>
                   <p className={`mt-1.5 break-words font-serif text-lg font-bold ${c.accent}`}>{c.value}</p>
                   <p className="mt-1 text-[10px] text-gray-400">{c.note}</p>
+                  {c.label === "Starting Price" && (
+                    <NegotiationNote className="mt-2 text-[9px]" iconSize={10} />
+                  )}
                 </div>
               ))}
             </div>
@@ -386,14 +394,15 @@ export default function PropertyDetail() {
 
       {/* ══ Mobile sticky bottom sheet ══ */}
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-gray-100 bg-white/95 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 backdrop-blur-md lg:hidden">
-        <div className="mb-2 flex items-center justify-between">
+        <div className="mb-2 flex items-center justify-between gap-3">
           <div>
             <p className="text-[9px] font-bold uppercase tracking-[0.16em] text-gray-400">Starting at</p>
             <p className="font-serif text-xl font-bold leading-none text-navy">{property.price}</p>
+            <NegotiationNote className="mt-1 max-w-[220px] text-[9px]" iconSize={10} />
           </div>
           <button
             onClick={toggleSave}
-            className={`flex items-center gap-1.5 rounded-full border px-3 py-2 text-[10px] font-bold uppercase tracking-wider transition-colors ${
+            className={`flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-2 text-[10px] font-bold uppercase tracking-wider transition-colors ${
               saved ? "border-green text-green" : "border-gray-200 text-charcoal"
             }`}
           >
@@ -403,19 +412,18 @@ export default function PropertyDetail() {
         </div>
         <div className="grid grid-cols-2 gap-2">
           <button
-            onClick={() => setBookOpen(true)}
+            onClick={() => openVisit("Product mobile sticky")}
             className="flex items-center justify-center gap-1.5 rounded-lg bg-gold py-3 text-[11px] font-bold uppercase tracking-wider text-navy"
           >
             <Calendar size={14} strokeWidth={2.4} /> Site Visit
           </button>
-          <a
-            href={whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={() => openInquiry("Product mobile sticky")}
             className="flex items-center justify-center gap-1.5 rounded-lg bg-navy py-3 text-[11px] font-bold uppercase tracking-wider text-white"
           >
-            <Phone size={14} strokeWidth={2.4} /> WhatsApp
-          </a>
+            <WhatsAppMark size={14} /> WhatsApp
+          </button>
         </div>
       </div>
 
@@ -444,80 +452,6 @@ export default function PropertyDetail() {
                 className="max-h-full max-w-full object-contain"
               />
             </div>
-          </div>
-        </div>
-      )}
-
-      {/* Booking modal */}
-      {bookOpen && (
-        <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-navy/70 p-4 backdrop-blur-sm"
-          onClick={() => setBookOpen(false)}
-          role="dialog"
-          aria-modal="true"
-        >
-          <div
-            className="relative max-h-[90vh] w-full max-w-md overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button onClick={() => setBookOpen(false)} aria-label="Close" className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-mist hover:bg-gray-200">
-              <X size={17} />
-            </button>
-            <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-gold">Private viewing</p>
-            <h2 className="mt-1 font-serif text-2xl font-bold text-navy">Book a Site Visit</h2>
-            <p className="mt-1 text-[12px] text-gray-600">
-              {property.title} · {property.location}
-            </p>
-            <form
-              className="mt-5 space-y-3.5"
-              onSubmit={(e) => {
-                e.preventDefault();
-                const data = new FormData(e.currentTarget);
-                const msg = `Site visit request%0AProperty: ${property.title}%0AName: ${data.get("name")}%0APhone: ${data.get("phone")}%0ADate: ${data.get("date")}%0ATime: ${data.get("time")}`;
-                window.open(`https://wa.me/${CONTACT.whatsapp.replace(/\D/g, "")}?text=${msg}`, "_blank");
-                setBookOpen(false);
-              }}
-            >
-              {[
-                { name: "name", label: "Full Name", type: "text", ph: "Your name" },
-                { name: "phone", label: "Phone / WhatsApp", type: "tel", ph: "+91 8917622925" },
-                { name: "date", label: "Preferred Date", type: "date" },
-              ].map((f) => (
-                <div key={f.name}>
-                  <label htmlFor={f.name} className="mb-1 block text-[10px] font-bold uppercase tracking-[0.14em] text-charcoal">
-                    {f.label}
-                  </label>
-                  <input
-                    id={f.name}
-                    name={f.name}
-                    type={f.type}
-                    required
-                    placeholder={f.ph}
-                    className="w-full rounded-lg border border-gray-200 bg-mist px-3 py-2.5 text-sm outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/20"
-                  />
-                </div>
-              ))}
-              <div>
-                <label htmlFor="time" className="mb-1 block text-[10px] font-bold uppercase tracking-[0.14em] text-charcoal">
-                  Preferred Time
-                </label>
-                <select
-                  id="time"
-                  name="time"
-                  className="w-full rounded-lg border border-gray-200 bg-mist px-3 py-2.5 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20"
-                >
-                  {["10:00 AM", "11:30 AM", "2:00 PM", "4:00 PM", "5:30 PM"].map((t) => (
-                    <option key={t}>{t}</option>
-                  ))}
-                </select>
-              </div>
-              <button type="submit" className="btn-primary w-full">
-                Confirm Visit
-              </button>
-              <p className="text-center text-[10px] text-gray-400">
-                Our advisor confirms within 24 hours. No obligation.
-              </p>
-            </form>
           </div>
         </div>
       )}
