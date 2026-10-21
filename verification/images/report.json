@@ -1,0 +1,57 @@
+[
+  {
+    "id": "prop_101",
+    "title": "Panchtattva Agro Tourism Centre",
+    "mainPresent": true,
+    "mainFit": "contain",
+    "mainNaturalRatioKept": null,
+    "thumbCount": 7,
+    "thumbsNaturalRatioKept": false,
+    "imgCount": 9,
+    "broken": 4
+  },
+  {
+    "id": "prop_102",
+    "title": "Sea Princess-1",
+    "mainPresent": true,
+    "mainFit": "contain",
+    "mainNaturalRatioKept": false,
+    "thumbCount": 7,
+    "thumbsNaturalRatioKept": false,
+    "imgCount": 9,
+    "broken": 2
+  },
+  {
+    "id": "prop_103",
+    "title": "Blu Marina",
+    "mainPresent": true,
+    "mainFit": "contain",
+    "mainNaturalRatioKept": false,
+    "thumbCount": 6,
+    "thumbsNaturalRatioKept": false,
+    "imgCount": 8,
+    "broken": 2
+  },
+  {
+    "id": "prop_104",
+    "title": "Sea Heaven",
+    "mainPresent": true,
+    "mainFit": "contain",
+    "mainNaturalRatioKept": false,
+    "thumbCount": 6,
+    "thumbsNaturalRatioKept": false,
+    "imgCount": 8,
+    "broken": 1
+  },
+  {
+    "id": "prop_105",
+    "title": "Sea Sand Lodge",
+    "mainPresent": true,
+    "mainFit": "contain",
+    "mainNaturalRatioKept": null,
+    "thumbCount": 6,
+    "thumbsNaturalRatioKept": false,
+    "imgCount": 8,
+    "broken": 3
+  }
+]

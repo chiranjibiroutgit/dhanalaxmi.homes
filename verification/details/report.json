@@ -1,0 +1,147 @@
+{
+  "products": [
+    {
+      "id": "prop_101",
+      "title": "Panchtattva Agro Tourism Centre",
+      "titleOk": true,
+      "priceOk": true,
+      "unitsOk": true,
+      "missingFacts": [],
+      "reraMentioned": false,
+      "brokenImages": [],
+      "imageCount": 18,
+      "heroOpenedReader": 1,
+      "brochureReader": {
+        "open": 1,
+        "fits": true,
+        "size": [
+          538,
+          761
+        ],
+        "viewport": [
+          1440,
+          900
+        ]
+      }
+    },
+    {
+      "id": "prop_102",
+      "title": "Sea Princess-1",
+      "titleOk": true,
+      "priceOk": true,
+      "unitsOk": true,
+      "missingFacts": [],
+      "reraMentioned": false,
+      "brokenImages": [],
+      "imageCount": 17,
+      "heroOpenedReader": 1,
+      "brochureReader": {
+        "open": 1,
+        "fits": true,
+        "size": [
+          1191,
+          421
+        ],
+        "viewport": [
+          1440,
+          900
+        ]
+      }
+    },
+    {
+      "id": "prop_103",
+      "title": "Blu Marina",
+      "titleOk": true,
+      "priceOk": true,
+      "unitsOk": true,
+      "missingFacts": [],
+      "reraMentioned": false,
+      "brokenImages": [],
+      "imageCount": 15,
+      "heroOpenedReader": 1,
+      "brochureReader": {
+        "open": 1,
+        "fits": true,
+        "size": [
+          539,
+          761
+        ],
+        "viewport": [
+          1440,
+          900
+        ]
+      }
+    },
+    {
+      "id": "prop_104",
+      "title": "Sea Heaven",
+      "titleOk": true,
+      "priceOk": true,
+      "unitsOk": true,
+      "missingFacts": [],
+      "reraMentioned": false,
+      "brokenImages": [],
+      "imageCount": 18,
+      "heroOpenedReader": 1,
+      "brochureReader": {
+        "open": 1,
+        "fits": true,
+        "size": [
+          539,
+          761
+        ],
+        "viewport": [
+          1440,
+          900
+        ]
+      }
+    },
+    {
+      "id": "prop_105",
+      "title": "Sea Sand Lodge",
+      "titleOk": true,
+      "priceOk": true,
+      "unitsOk": true,
+      "missingFacts": [],
+      "reraMentioned": false,
+      "brokenImages": [],
+      "imageCount": 21,
+      "heroOpenedReader": 1,
+      "brochureReader": {
+        "open": 1,
+        "fits": true,
+        "size": [
+          539,
+          761
+        ],
+        "viewport": [
+          1440,
+          900
+        ]
+      }
+    }
+  ],
+  "homepage": {
+    "reraMentioned": false,
+    "chips": [
+      "COMMERCIAL",
+      "2 DECIMALS / UNIT",
+      "55 UNITS",
+      "PLOT",
+      "PHASE 2 PLOTS",
+      "PHASE 2 LAYOUT",
+      "PLOT",
+      "2–3 DECIMALS",
+      "26 UNITS",
+      "PLOT",
+      "900–2,000 SQ. FT.",
+      "20+ UNITS",
+      "PLOT",
+      "770–880 SQ. FT.",
+      "51 UNITS"
+    ],
+    "brokenImages": []
+  },
+  "consoleErrors": [],
+  "pageErrors": []
+}

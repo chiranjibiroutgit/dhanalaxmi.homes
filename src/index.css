@@ -1,0 +1,126 @@
+/* Dhanalaxmi Group — Base Styles & Design Tokens */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-mist text-charcoal antialiased selection:bg-gold/20 selection:text-navy;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  }
+  h1, h2, h3, .serif {
+    font-family: 'Cinzel', Georgia, serif;
+  }
+  /* Offset anchor targets below the 72px sticky header */
+  section[id] {
+    scroll-margin-top: 88px;
+  }
+  :focus-visible {
+    outline: 2px solid #D4AF37;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .container-luxury {
+    @apply max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-navy text-white text-sm font-semibold tracking-wider uppercase rounded-full transition-all duration-200 hover:bg-gold hover:text-navy hover:shadow-[0_0_20px_rgba(212,175,55,0.35)] focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 active:scale-95 disabled:opacity-60 disabled:pointer-events-none;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center px-6 py-3 bg-gold text-navy text-sm font-semibold tracking-wider uppercase rounded-full transition-all duration-200 hover:bg-white hover:shadow-[0_0_25px_rgba(212,175,55,0.45)] focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2 active:scale-95;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-navy text-navy text-sm font-semibold tracking-wider uppercase rounded-full transition-all duration-200 hover:bg-navy hover:text-white focus:outline-none focus:ring-2 focus:ring-navy active:scale-95;
+  }
+
+  .card-cover {
+    @apply relative overflow-hidden rounded-xl bg-mist aspect-[16/10];
+  }
+
+  .spec-chip {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-white border border-gray-200 text-[9px] font-medium text-charcoal uppercase tracking-wider shadow-sm;
+  }
+
+  .section-header {
+    @apply mb-8 text-center;
+  }
+  .section-header h2 {
+    @apply text-3xl md:text-4xl font-bold text-navy tracking-tight mb-3;
+  }
+  .section-header p {
+    @apply text-gray-600 max-w-2xl mx-auto text-sm md:text-base;
+  }
+
+  .gold-underline {
+    @apply relative inline-block;
+  }
+  .gold-underline::after {
+    content: "";
+    @apply absolute -bottom-1 left-0 w-full h-1 bg-gold rounded-full scale-x-0 origin-left transition-transform duration-300 ease-out;
+  }
+  .gold-underline.active::after {
+    @apply scale-x-100;
+  }
+
+  .nav-link {
+    @apply text-charcoal text-sm font-medium transition-colors duration-200 hover:text-gold;
+  }
+  .nav-link.active {
+    @apply text-gold;
+  }
+}
+
+/* ── Dev Edit Panel canvas ─────────────────────────────────────────────
+   The editor renders the REAL site components. These rules only neutralise
+   the site's fixed header inside the canvas and add selection affordances.
+   Nothing here affects the public site. */
+.edit-canvas {
+  position: relative;
+}
+
+.edit-canvas header.fixed {
+  position: sticky;
+  top: 0;
+  left: auto;
+  right: auto;
+  width: 100%;
+  background: #ffffff !important;
+}
+
+.edit-canvas.is-editing [data-edit-key],
+.edit-canvas.is-editing [data-property-id] {
+  cursor: crosshair;
+}
+
+.edit-canvas.is-editing [data-edit-key]:hover,
+.edit-canvas.is-editing [data-property-id]:hover {
+  outline: 2px dashed #d4af37;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.edit-canvas .is-selected {
+  outline: 2px solid #d4af37 !important;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Keep the inspector above the mirrored sticky header */
+.edit-inspector {
+  position: relative;
+  z-index: 60;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

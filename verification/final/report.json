@@ -1,0 +1,252 @@
+[
+  {
+    "id": "prop_101",
+    "title": "Panchtattva Agro Tourism Centre",
+    "broken": [],
+    "heroSrc": "/images/products/panchtattva-1.jpg",
+    "heroNatural": [
+      1600,
+      1000
+    ],
+    "thumbs": 8,
+    "heroOpened": 0,
+    "brochureImage": {
+      "src": "/images/brochures/prop_101_panchtattva/p01_img0.jpg",
+      "natural": [
+        1240,
+        1755
+      ],
+      "box": [
+        477,
+        675
+      ],
+      "fit": "contain"
+    },
+    "readerOpened": 1,
+    "fitInfo": {
+      "fit": "contain",
+      "box": [
+        538,
+        761
+      ],
+      "natural": [
+        1240,
+        1755
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "fitsScreen": true,
+      "ratioKept": true
+    },
+    "zoomInfo": {
+      "box": [
+        2088,
+        2955
+      ],
+      "zoomLabel": "150%",
+      "ratioKept": true
+    }
+  },
+  {
+    "id": "prop_102",
+    "title": "Sea Princess-1",
+    "broken": [],
+    "heroSrc": "/images/products/seaprincess-1.jpg",
+    "heroNatural": [
+      1600,
+      1000
+    ],
+    "thumbs": 8,
+    "heroOpened": 0,
+    "brochureImage": {
+      "src": "/images/brochures/prop_102_seaprincess/p01_full.jpg",
+      "natural": [
+        1191,
+        421
+      ],
+      "box": [
+        1024,
+        362
+      ],
+      "fit": "contain"
+    },
+    "readerOpened": 1,
+    "fitInfo": {
+      "fit": "contain",
+      "box": [
+        1191,
+        421
+      ],
+      "natural": [
+        1191,
+        421
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "fitsScreen": true,
+      "ratioKept": true
+    },
+    "zoomInfo": {
+      "box": [
+        2088,
+        738
+      ],
+      "zoomLabel": "150%",
+      "ratioKept": true
+    }
+  },
+  {
+    "id": "prop_103",
+    "title": "Blu Marina",
+    "broken": [],
+    "heroSrc": "/images/products/blumarina-1.jpg",
+    "heroNatural": [
+      1600,
+      1000
+    ],
+    "thumbs": 8,
+    "heroOpened": 0,
+    "brochureImage": {
+      "src": "/images/brochures/prop_103_blumarina/p01_img0.jpg",
+      "natural": [
+        2478,
+        3500
+      ],
+      "box": [
+        478,
+        675
+      ],
+      "fit": "contain"
+    },
+    "readerOpened": 1,
+    "fitInfo": {
+      "fit": "contain",
+      "box": [
+        539,
+        761
+      ],
+      "natural": [
+        2478,
+        3500
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "fitsScreen": true,
+      "ratioKept": true
+    },
+    "zoomInfo": {
+      "box": [
+        2088,
+        2949
+      ],
+      "zoomLabel": "150%",
+      "ratioKept": true
+    }
+  },
+  {
+    "id": "prop_104",
+    "title": "Sea Heaven",
+    "broken": [],
+    "heroSrc": "/images/products/seaheaven-1.jpg",
+    "heroNatural": [
+      1600,
+      1000
+    ],
+    "thumbs": 8,
+    "heroOpened": 0,
+    "brochureImage": {
+      "src": "/images/brochures/prop_104_seaheaven/p01_img0.jpg",
+      "natural": [
+        2478,
+        3500
+      ],
+      "box": [
+        478,
+        675
+      ],
+      "fit": "contain"
+    },
+    "readerOpened": 1,
+    "fitInfo": {
+      "fit": "contain",
+      "box": [
+        539,
+        761
+      ],
+      "natural": [
+        2478,
+        3500
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "fitsScreen": true,
+      "ratioKept": true
+    },
+    "zoomInfo": {
+      "box": [
+        2088,
+        2949
+      ],
+      "zoomLabel": "150%",
+      "ratioKept": true
+    }
+  },
+  {
+    "id": "prop_105",
+    "title": "Sea Sand Lodge",
+    "broken": [],
+    "heroSrc": "/images/products/seasand-1.jpg",
+    "heroNatural": [
+      1600,
+      1000
+    ],
+    "thumbs": 8,
+    "heroOpened": 0,
+    "brochureImage": {
+      "src": "/images/brochures/prop_105_seasand/p01_img0.jpg",
+      "natural": [
+        2478,
+        3500
+      ],
+      "box": [
+        478,
+        675
+      ],
+      "fit": "contain"
+    },
+    "readerOpened": 1,
+    "fitInfo": {
+      "fit": "contain",
+      "box": [
+        539,
+        761
+      ],
+      "natural": [
+        2478,
+        3500
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "fitsScreen": true,
+      "ratioKept": true
+    },
+    "zoomInfo": {
+      "box": [
+        2088,
+        2949
+      ],
+      "zoomLabel": "150%",
+      "ratioKept": true
+    }
+  }
+]
