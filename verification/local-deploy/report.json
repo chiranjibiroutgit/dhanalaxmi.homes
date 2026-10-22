@@ -1,0 +1,57 @@
+{
+  "base": "http://localhost:4173",
+  "status": "PASS",
+  "failures": [],
+  "desktop": {
+    "home": {
+      "rootChildren": 1,
+      "bodyTextLength": 5078,
+      "bodyTextStart": "DHANALAXMI\nHOMES.COM\nHome\nProperties\nAbout Us\nMy Cart\nMe\nSign Up\nSHREE JAGANNATH DHAM PURI\n(INTERNATIONAL CAPITAL REGION",
+      "heroHeading": "Modern Living,\nCrafted With Enduring Trust.",
+      "headerBrand": true,
+      "cards": 5,
+      "locationBadge": "SHREE JAGANNATH DHAM PURI\n(INTERNATIONAL CAPITAL REGION)\nEKAMRA KHETRA BHUBANESWAR\n(STATE CAPITAL REGION)",
+      "negotiationNotes": 6,
+      "hasSearch": true,
+      "hasGoalFilter": true,
+      "overflowX": 0,
+      "rera": false,
+      "stylesheets": 2,
+      "bodyBackground": "rgb(248, 249, 250)",
+      "headerBackground": "rgba(255, 255, 255, 0.9)"
+    },
+    "rentalCount": 4,
+    "waterfrontCount": 2,
+    "consoleErrors": [],
+    "localRequestFailures": []
+  },
+  "product": {
+    "detail": {
+      "heading": "Blu Marina",
+      "whatsappButton": true,
+      "callLink": true,
+      "negotiationNotes": 3,
+      "overflowX": 0,
+      "rera": false
+    },
+    "whatsappUrl": "https://wa.me/918917622925?text=New%20WhatsApp%20enquiry%20%E2%80%94%20Dhanalaxmi%20Group%0AReference%3A%20DL-JKI499%0AName%3A%20Local%20Deploy%20Test%0AMobile%3A%20%2B91%208917622925%0AProject%3A%20Blu%20Marina%0ALocation%3A%20Mouza%20Sipasurubili%2C%20Brahmagiri%2C%20Puri%2C%20Odisha%0ASource%3A%20Product%20detail%20sidebar%0A%0APlease%20share%20the%20best%20negotiated%20price%20for%20Blu%20Marina.",
+    "message": "New WhatsApp enquiry — Dhanalaxmi Group\nReference: DL-JKI499\nName: Local Deploy Test\nMobile: +91 8917622925\nProject: Blu Marina\nLocation: Mouza Sipasurubili, Brahmagiri, Puri, Odisha\nSource: Product detail sidebar\n\nPlease share the best negotiated price for Blu Marina.",
+    "pageErrors": []
+  },
+  "mobile": {
+    "home": {
+      "rootChildren": 1,
+      "bodyTextLength": 5077,
+      "cards": 5,
+      "locationBadge": "SHREE JAGANNATH DHAM PURI\n(INTERNATIONAL CAPITAL REGION)\nEKAMRA KHETRA BHUBANESWAR\n(STATE CAPITAL REGION)",
+      "overflowX": 0,
+      "fabVisible": true
+    },
+    "detail": {
+      "heading": "Blu Marina",
+      "visitButton": true,
+      "overflowX": 0
+    },
+    "errors": []
+  }
+}
