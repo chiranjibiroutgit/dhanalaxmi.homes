@@ -705,7 +705,7 @@ export default function DevEditPanel() {
                   </Section>
 
                   <Section title="Hero">
-                    <TextField id="field-hero-eyebrow" label="Eyebrow badge" value={content.hero.eyebrow} onChange={(v) => updateSection("hero", { eyebrow: v })} />
+                    <TextField id="field-hero-eyebrow" label="Location badges" value={content.hero.eyebrow} onChange={(v) => updateSection("hero", { eyebrow: v })} textarea rows={3} hint="Separate locations with | — e.g. Shree Jagannath Dham Puri (International Capital Region) | Ekamra Khetra Bhubaneswar (State Capital Region)" />
                     <TextField id="field-hero-rating" label="Rating line" value={content.hero.rating} onChange={(v) => updateSection("hero", { rating: v })} />
                     <TextField id="field-hero-headline1" label="Headline line 1" value={content.hero.headline1} onChange={(v) => updateSection("hero", { headline1: v })} />
                     <TextField id="field-hero-headline2" label="Headline line 2 (gold)" value={content.hero.headline2} onChange={(v) => updateSection("hero", { headline2: v })} />

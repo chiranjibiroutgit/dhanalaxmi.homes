@@ -21,6 +21,18 @@ export default function Hero({ filters, onChange, onSearch, resultCount }) {
   const hero = content.hero;
   const stats = hero.stats?.length ? hero.stats : STATS;
 
+  /* "Name (Region) | Name (Region)" keeps both locations editable as one field */
+  const locations = String(hero.eyebrow || "")
+    .split("|")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const match = line.match(/^(.*?)\s*\((.*)\)\s*$/);
+      return match
+        ? { name: match[1].trim(), region: match[2].trim() }
+        : { name: line, region: "" };
+    });
+
   return (
     <section id="home" className="relative isolate flex min-h-[100svh] items-center overflow-hidden">
       {/* Architectural backdrop */}
@@ -42,9 +54,23 @@ export default function Hero({ filters, onChange, onSearch, resultCount }) {
           <div className="mb-6 flex flex-wrap items-center gap-3">
             <span
               data-edit-key="hero.eyebrow"
-              className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-white/10 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-gold backdrop-blur-sm"
+              className="inline-flex items-start gap-2 rounded-2xl border border-gold/40 bg-white/10 px-3.5 py-2 text-gold backdrop-blur-sm"
             >
-              <ShieldCheck size={13} strokeWidth={2.2} /> {hero.eyebrow}
+              <ShieldCheck size={13} strokeWidth={2.2} className="mt-0.5 shrink-0" />
+              <span className="flex flex-col gap-1.5">
+                {locations.map((location) => (
+                  <span key={`${location.name}-${location.region}`} className="block leading-tight">
+                    <span className="block text-[9px] font-semibold uppercase tracking-[0.14em] text-gold sm:text-[10px]">
+                      {location.name}
+                    </span>
+                    {location.region && (
+                      <span className="block text-[8px] font-medium uppercase tracking-[0.14em] text-white/60">
+                        ({location.region})
+                      </span>
+                    )}
+                  </span>
+                ))}
+              </span>
             </span>
             <span
               data-edit-key="hero.rating"

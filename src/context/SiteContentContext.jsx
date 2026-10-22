@@ -24,7 +24,8 @@ export const defaultContent = {
     monogram: "DL",
   },
   hero: {
-    eyebrow: "Puri, Odisha · Coastal Living",
+    eyebrow:
+      "Shree Jagannath Dham Puri (International Capital Region) | Ekamra Khetra Bhubaneswar (State Capital Region)",
     rating: "4.9 Client Rating",
     headline1: "Modern Living,",
     headline2: "Crafted With Enduring Trust.",
@@ -102,11 +103,18 @@ function loadContent() {
       });
     };
 
+    /* Refresh the old single-location badge once, without wiping other edits */
+    const hero = { ...base.hero, ...(stored.hero || {}) };
+    const legacyEyebrow = /^puri,\s*odisha\s*[·-]\s*coastal living$/i;
+    if (!hero.eyebrow || legacyEyebrow.test(String(hero.eyebrow).trim())) {
+      hero.eyebrow = base.hero.eyebrow;
+    }
+
     return {
       ...base,
       ...stored,
       brand: { ...base.brand, ...(stored.brand || {}) },
-      hero: { ...base.hero, ...(stored.hero || {}) },
+      hero,
       portfolio: { ...base.portfolio, ...(stored.portfolio || {}) },
       about: { ...base.about, ...(stored.about || {}) },
       contact: { ...base.contact, ...(stored.contact || {}) },
